@@ -1,7 +1,10 @@
 package tn.esprit.twin.projetspringclasse.models;
 import jakarta.persistence.*;
 import lombok.*;
-import java.time.LocalDate;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "clients")
@@ -13,7 +16,11 @@ public class Client {
     @Id
     private long id;
     private String idantifiant ;
-    private LocalDate  datePremiereVisite;
+    @Temporal(TemporalType.DATE)
+    Date datePremiereVisite;
+
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    private List<Commande> commandes = new ArrayList<>();
 
     public void setId(Long id) {
         this.id = id;
