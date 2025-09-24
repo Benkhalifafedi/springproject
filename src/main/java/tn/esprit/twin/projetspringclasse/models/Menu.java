@@ -17,16 +17,13 @@ public class Menu {
 
     private Float prixTotal;
 
-    // Relation avec Restaurant
     @ManyToOne
     @JoinColumn(name = "idRestaurant")
     private Restaurant restaurant;
 
-    //  Relation avec Commande (un menu peut être commandé plusieurs fois)
     @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL)
     private List<Commande> commandes;
 
-    // Relation avec Composant (un menu contient plusieurs composants)
     @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL)
     private List<Composant> composants;
 

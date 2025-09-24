@@ -18,7 +18,6 @@ public class ChaineRestauration {
     @JsonManagedReference
     private List<Restaurant> restaurants;
 
-    // --- Getters & Setters ---
     public Long getIdChainRestauration() {
         return idChainRestauration;
     }
