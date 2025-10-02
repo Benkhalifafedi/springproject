@@ -14,7 +14,7 @@ public class ChaineRestauration {
     private String libelle;
     private LocalDate dateCreation;
 
-    @OneToMany(mappedBy = "chaineRestauration", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "chaineRestauration")
     @JsonManagedReference
     private List<Restaurant> restaurants;
 

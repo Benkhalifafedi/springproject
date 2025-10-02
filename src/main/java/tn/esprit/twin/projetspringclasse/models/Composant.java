@@ -1,16 +1,14 @@
+// Composant.java
 package tn.esprit.twin.projetspringclasse.models;
 
-
 import jakarta.persistence.*;
-
-import java.util.List;
 
 @Entity
 public class Composant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long idComposant;
+
     private String nomComposant;
     private Float prix;
 
@@ -18,9 +16,9 @@ public class Composant {
     @JoinColumn(name = "idMenu")
     private Menu menu;
 
-    @OneToMany(mappedBy = "composant")
-    private List<DetailComposant> details;
-
+    @OneToOne
+    @JoinColumn(name = "idDetailComposant")
+    private DetailComposant detailComposant;
 
     public Long getIdComposant() {
         return idComposant;
@@ -44,5 +42,21 @@ public class Composant {
 
     public void setPrix(Float prix) {
         this.prix = prix;
+    }
+
+    public Menu getMenu() {
+        return menu;
+    }
+
+    public void setMenu(Menu menu) {
+        this.menu = menu;
+    }
+
+    public DetailComposant getDetailComposant() {
+        return detailComposant;
+    }
+
+    public void setDetailComposant(DetailComposant detailComposant) {
+        this.detailComposant = detailComposant;
     }
 }

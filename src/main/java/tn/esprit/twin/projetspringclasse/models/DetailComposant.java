@@ -1,24 +1,20 @@
 package tn.esprit.twin.projetspringclasse.models;
 
-
 import jakarta.persistence.*;
 
 @Entity
 public class DetailComposant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long idDetailComposant;
+
     private Float imc;
 
     @Enumerated(EnumType.STRING)
     private TypeComposant typeComposant;
 
-    @ManyToOne
-    @JoinColumn(name = "idComposant")
+    @OneToOne(mappedBy = "detailComposant")
     private Composant composant;
-
-
 
     public Long getIdDetailComposant() {
         return idDetailComposant;
@@ -40,7 +36,5 @@ public class DetailComposant {
         return typeComposant;
     }
 
-    public void setTypeComposant(TypeComposant typeComposant) {
-        this.typeComposant = typeComposant;
-    }
+
 }

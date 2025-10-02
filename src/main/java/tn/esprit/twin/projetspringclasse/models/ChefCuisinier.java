@@ -1,13 +1,13 @@
 package tn.esprit.twin.projetspringclasse.models;
 
 import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
 public class ChefCuisinier {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long idChefCuisinier;
 
     private String nom;
@@ -16,11 +16,13 @@ public class ChefCuisinier {
     @Enumerated(EnumType.STRING)
     private TypeChef typeChef;
 
-    @ManyToOne
-    @JoinColumn(name = "idMenu")
-    private Menu menu;
-
-
+    @ManyToMany
+    @JoinTable(
+            name = "chef_menu",
+            joinColumns = @JoinColumn(name = "idChefCuisinier"),
+            inverseJoinColumns = @JoinColumn(name = "idMenu")
+    )
+    private List<Menu> menus;
 
     public Long getIdChefCuisinier() {
         return idChefCuisinier;
@@ -52,5 +54,13 @@ public class ChefCuisinier {
 
     public void setTypeChef(TypeChef typeChef) {
         this.typeChef = typeChef;
+    }
+
+    public List<Menu> getMenus() {
+        return menus;
+    }
+
+    public void setMenus(List<Menu> menus) {
+        this.menus = menus;
     }
 }
